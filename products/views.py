@@ -1,5 +1,16 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from .models import Product
+
 
 def index(request):
-    return HttpResponse('Hola mundo!')
+    products = Product.objects.all()
+    return render(
+        request,
+        'index.html',
+        context={'products': products}
+    )
+
+
+def detail(request, product_id):
+    return HttpResponse(product_id)
